@@ -1,17 +1,10 @@
 //- Page info
 mixin title(titleText)
 	title= titleText
-<<<<<<< HEAD
 mixin desc(descText)
 	meta(name="description", content= descText)
 
 //- +breadcrumbs(['Главная'], 'Оборудование')
-=======
-
-mixin desc(descText)
-	meta(name="description", content= descText)
-
->>>>>>> 6c8d79a206b93fc2a3978af3d68aa1a0d4025c7e
 mixin breadcrumbs(breadcrumbsItems, breadcrumbsLast)
 	section.breadcrumbs
 		.container
@@ -28,7 +21,6 @@ mixin breadcrumbs(breadcrumbsItems, breadcrumbsLast)
 						a(href="#").breadcrumbs-list__link= breadcrumbsLast
 				else
 
-<<<<<<< HEAD
 //- mixin add image with webp
 mixin img(directory, name, className, format)
 	if format == '1'
@@ -46,5 +38,3 @@ mixin img(directory, name, className, format)
 mixin icon(icon)
 	svg(class="icon icon-" + icon viewBox='0 0 100 100')
 		use(href=img+'sprite.svg#' + icon)
-=======
->>>>>>> 6c8d79a206b93fc2a3978af3d68aa1a0d4025c7e

@@ -34,51 +34,51 @@ body {
 }
 
 // Стили для хлебных крошек
-.breadcrumbs {
-	&-list {
-		display: flex;
-		justify-content: flex-start;
-		flex-wrap: wrap;
-		white-space: nowrap;
+// .breadcrumbs {
+// 	&-list {
+// 		display: flex;
+// 		justify-content: flex-start;
+// 		flex-wrap: wrap;
+// 		white-space: nowrap;
 		
-		&-item {
-			&:last-child {
-				.breadcrumbs-list__link {
-					pointer-events: none;
-				}
-			}
+// 		&-item {
+// 			&:last-child {
+// 				.breadcrumbs-list__link {
+// 					pointer-events: none;
+// 				}
+// 			}
 
-			&:not(:first-child) {
-				margin: 0 0 0 26px;
+// 			&:not(:first-child) {
+// 				margin: 0 0 0 26px;
 
-				.breadcrumbs-list__link {
-					&:before {
-						content: '';
-						display: inline-block;
-						width: 10px;
-						height: 10px;
-						border-radius: 10px;
-						background: $darkGray;
-						position: absolute;
-						left: -18px;
-						top: 6px;
-					}
-				}
-			}
-		}
+// 				.breadcrumbs-list__link {
+// 					&:before {
+// 						content: '';
+// 						display: inline-block;
+// 						width: 10px;
+// 						height: 10px;
+// 						border-radius: 10px;
+// 						background: $darkGray;
+// 						position: absolute;
+// 						left: -18px;
+// 						top: 6px;
+// 					}
+// 				}
+// 			}
+// 		}
 
-		&__link {
-			position: relative;
-			color: $darkGray;
-			font-size: 16px;
-			line-height: 1;
-			text-decoration: none;
-			&:hover {
-				color: $title;
-			}
-		}
-	}
-}
+// 		&__link {
+// 			position: relative;
+// 			color: $darkGray;
+// 			font-size: 16px;
+// 			line-height: 1;
+// 			text-decoration: none;
+// 			&:hover {
+// 				color: $title;
+// 			}
+// 		}
+// 	}
+// }
 
 // стили для работы кастомных табов
 .tabs {
