@@ -1,0 +1,16 @@
+.footer {
+	background: #000;
+	display: flex;
+	&-step {
+		background: #000;
+		&__label {
+			color: #000;
+		}
+	}
+	.block {
+		clear: both;
+		.title {
+			color: #000;
+		}
+	}
+}
