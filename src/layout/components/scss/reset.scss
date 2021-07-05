@@ -1,0 +1,53 @@
+// Отменяем дефолтные стили браузеров
+// Указываем box sizing
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	border: 0 none;
+	outline: none;
+}
+
+// Настройки по-умолчанию для body
+body {
+	min-height: 100vh;
+	line-height: 1;
+}
+
+// Удаляем стандартную стилизацию для всех ul и li, у которых есть атрибут class
+ul[class],
+ol[class] {
+	list-style: none;
+}
+
+// Упрощаем работу с изображениями
+img {
+	max-width: 100%;
+	display: block;
+	image-rendering: pixelated;
+}
+
+// Убираем оформление элементов браузером
+form,
+input,
+button,
+select,
+option,
+textarea {
+	appearance: none;
+	background-color: transparent;
+}
+
+table,
+thead,
+tfoot,
+tbody,
+tr,
+th,
+td {
+	border-collapse: collapse;
+	border-spacing: 0;
+	appearance: none;
+}

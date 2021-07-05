@@ -1,0 +1,100 @@
+body {
+	background: #fff;
+	overflow-x: hidden;
+	// @include scroll(10px, null, $lightGray2, $lightGray, null, null);
+}
+
+.page {
+	width: 100%;
+	font: 400 14px/1 $mainFont;
+	// color: $title;
+	position: relative;
+	max-width: 1920px;
+	margin: 0 auto;
+	overflow: hidden;
+	&-container {
+		width: 100%;
+	}
+}
+
+.container {
+	max-width: $containerWidthPC;
+	width: 100%;
+	margin: 0 auto;
+	@include max-screen(1600px) {
+		max-width: $containerWidthMobile;
+	}
+	@include max-screen(1200px) {
+		padding: 0 15px;
+	}
+}
+
+.swiper-container {
+	margin: 0;
+}
+
+// Стили для хлебных крошек
+.breadcrumbs {
+	&-list {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		white-space: nowrap;
+		
+		&-item {
+			&:last-child {
+				.breadcrumbs-list__link {
+					pointer-events: none;
+				}
+			}
+
+			&:not(:first-child) {
+				margin: 0 0 0 26px;
+
+				.breadcrumbs-list__link {
+					&:before {
+						content: '';
+						display: inline-block;
+						width: 10px;
+						height: 10px;
+						border-radius: 10px;
+						background: $darkGray;
+						position: absolute;
+						left: -18px;
+						top: 6px;
+					}
+				}
+			}
+		}
+
+		&__link {
+			position: relative;
+			color: $darkGray;
+			font-size: 16px;
+			line-height: 1;
+			text-decoration: none;
+			&:hover {
+				color: $title;
+			}
+		}
+	}
+}
+
+// стили для работы кастомных табов
+.tabs {
+	&-tab {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+}
+
+a {
+	transition: color .3s ease;
+	&:after,
+	&:before {
+		transition: background-color .3s ease, width .3s ease, height .3s ease;
+	}
+}

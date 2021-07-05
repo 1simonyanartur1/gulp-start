@@ -1,0 +1,40 @@
+//- Page info
+mixin title(titleText)
+	title= titleText
+mixin desc(descText)
+	meta(name="description", content= descText)
+
+//- +breadcrumbs(['Главная'], 'Оборудование')
+mixin breadcrumbs(breadcrumbsItems, breadcrumbsLast)
+	section.breadcrumbs
+		.container
+			ul.breadcrumbs-list
+				each item in breadcrumbsItems
+					li.breadcrumbs-list-item
+						// if breadcrumb is single
+						if (breadcrumbsItems.length === 1)
+							a(href="#").breadcrumbs-list__link= item
+						else
+							a(href="#").breadcrumbs-list__link= item
+				if breadcrumbsLast
+					li.breadcrumbs-list-item
+						a(href="#").breadcrumbs-list__link= breadcrumbsLast
+				else
+
+//- mixin add image with webp
+mixin img(directory, name, className, format)
+	if format == '1'
+		img(
+			class= className
+			srcset=img + directory + "/webp/" + name + ".webp"
+			src=img + directory + "/" +  name + ".jpg")
+	else if format == '2'
+		img(
+			class= className
+			srcset=img + directory + "/webp/" + name + ".webp"
+			src=img + directory + "/" +  name + ".png")
+
+//- mixin add icon from svgSprite
+mixin icon(icon)
+	svg(class="icon icon-" + icon viewBox='0 0 100 100')
+		use(href=img+'sprite.svg#' + icon)
