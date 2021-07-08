@@ -109,15 +109,15 @@ var autoprefixerOptions = {
 	overrideBrowserslist: ['last 2 versions'],
 	grid: "autoplace",
 }
-// var pngSpriteOptions = {
-// 	imgName: 'sprite.png',
-// 	imgPath: '../img/sprite/sprite.png',
-// 	cssName: 'sprite.css',
-// 	retinaSrcFilter: path.images.pngSource2x,
-// 	retinaImgName: 'sprite-2x.png',
-// 	retinaImgPath: '../img/sprite/sprite-2x.png',
-// 	padding: 5
-// }
+var pngSpriteOptions = {
+	imgName: 'sprite.png',
+	imgPath: '../img/sprite.png',
+	cssName: 'sprite.css',
+	retinaSrcFilter: path.images.pngSource2x,
+	retinaImgName: 'sprite-2x.png',
+	retinaImgPath: '../img/sprite-2x.png',
+	padding: 5
+}
 var imageminOptions = [
 	imagemin.svgo({
 		plugins: [
@@ -269,25 +269,25 @@ const generateWebp = () => {
 exports.generatewebp = generateWebp;
 
 // Generate png sprite to app directory
-// const generatePngSprite = () => {
-// 	var spriteData =
-// 		src(path.images.pngSource)
-// 		.pipe(spritesmith(pngSpriteOptions));
+const generatePngSprite = () => {
+	var spriteData =
+		src(path.images.pngSource)
+		.pipe(spritesmith(pngSpriteOptions));
 
-// 	var imgStream = spriteData.img
-// 		.pipe(buffer())
-// 		.pipe(imagemin(imageminOptions))
-// 		.pipe(rename(function (path) { // change path
-// 			path.dirname = "img/sprite";
-// 		}))
-// 		.pipe(dest(path.images.result));
+	var imgStream = spriteData.img
+		.pipe(buffer())
+		.pipe(imagemin(imageminOptions))
+		.pipe(rename(function (path) { // change path
+			path.dirname = "img";
+		})) 
+		.pipe(dest(path.images.result));
 
-// 	var cssStream = spriteData.css
-// 		.pipe(dest(path.styles.result));
+	var cssStream = spriteData.css
+		.pipe(dest(path.styles.result));
 
-// 	return merge(imgStream, cssStream);
-// }
-// exports.generatepngsprite = generatePngSprite;
+	return merge(imgStream, cssStream);
+}
+exports.generatepngsprite = generatePngSprite;
 
 // Generate svg sprite to app directory
 const generateSvgSprite = () => {
@@ -357,7 +357,7 @@ const watchFiles = () => {
 	watch(path.styles.libs, cssLibs);
 	watch(path.images.source, transferImg);
 	watch(path.images.source, generateWebp);
-	// watch(path.images.pngSource, generatePngSprite);
+	watch(path.images.pngSource, generatePngSprite);
 	watch(path.images.svgSource, generateSvgSprite);
 	watch(path.favicon.source, transferFavicon);
 	watch(path.files.source, transferFiles);
@@ -371,7 +371,7 @@ exports.watchFiles = watchFiles;
 exports.default = series(
 	clearApp,
 	clearCache,
-	parallel(markupCompiller, styleCompiller, jsCompiller, cssLibs, jsLibs, transferImg, generateWebp, transferFavicon, transferFiles, generateSvgSprite, transferFonts),
+	parallel(markupCompiller, styleCompiller, jsCompiller, cssLibs, jsLibs, transferImg, generateWebp, transferFavicon, transferFiles, generateSvgSprite, generatePngSprite, transferFonts),
 	// parallel(markupCompiller, styleCompiller, jsCompiller, cssLibs, jsLibs, transferImg, generateWebp, transferFavicon, transferFiles, generatePngSprite, generateSvgSprite, transferFonts),
 	watchFiles
 );

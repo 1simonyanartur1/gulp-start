@@ -1,0 +1,40 @@
+header {
+	padding: 15px;
+	border: 1px solid #000;
+	width: calc(100% - 20px);
+	margin: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+
+
+.cards {
+	padding: 50px 0;
+	margin: 25px 0;
+}
+.swiper-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: auto;
+	width: 100% !important;
+	position: static;
+	margin: 15px 0;
+	transform: translate(0, 0) !important;
+	left: 0 !important;
+	font-size: inherit !important;
+	
+}
+.swiper-pagination-bullet {
+	height: auto;
+	width: auto;
+	background: none;
+	color: $darkGray;
+	opacity: 1;
+}
+.swiper-pagination-bullet-active {
+	color: red;
+}
