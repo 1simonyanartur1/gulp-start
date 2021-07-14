@@ -1,4 +1,4 @@
-// import { header } from "../blocks/header/template.js";
+// import { header } from "../blocks/header/header.js";
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			})
 		}
 	}
+
+	// header();
 
 	addPhoneMask();
 	tabs();
