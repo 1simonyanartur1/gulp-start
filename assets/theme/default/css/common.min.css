@@ -1,0 +1,116 @@
+/* line 3, src/layout/components/scss/reset.scss */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+  outline: none
+}
+/* line 14, src/layout/components/scss/reset.scss */
+body {
+  min-height: 100vh;
+  line-height: 1
+}
+/* line 20, src/layout/components/scss/reset.scss */
+ul[class],
+ol[class] {
+  list-style: none
+}
+/* line 26, src/layout/components/scss/reset.scss */
+img {
+  max-width: 100%;
+  display: block;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-pixelated;
+  image-rendering: pixelated
+}
+/* line 33, src/layout/components/scss/reset.scss */
+form,
+input,
+button,
+select,
+option,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent
+}
+/* line 43, src/layout/components/scss/reset.scss */
+table,
+thead,
+tfoot,
+tbody,
+tr,
+th,
+td {
+  border-collapse: collapse;
+  border-spacing: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none
+}
+/* line 55, src/layout/components/scss/reset.scss */
+a {
+  -webkit-transition: color .3s ease;
+  transition: color .3s ease
+}
+/* line 58, src/layout/components/scss/reset.scss */
+a:after,
+a:before {
+  -webkit-transition: background-color .3s ease,width .3s ease,height .3s ease;
+  transition: background-color .3s ease,width .3s ease,height .3s ease
+}
+/* line 1, src/layout/components/scss/ui.scss */
+body {
+  background: #fff;
+  overflow-x: hidden
+}
+/* line 7, src/layout/components/scss/ui.scss */
+.page {
+  width: 100%;
+  font: 400 14px/1 "UniNeue","Arial","Helvetica",sans-serif;
+  position: relative;
+  max-width: 1920px;
+  margin: 0 auto;
+  overflow: hidden
+}
+/* line 14, src/layout/components/scss/ui.scss */
+.page-container {
+  width: 100%
+}
+/* line 19, src/layout/components/scss/ui.scss */
+.container {
+  max-width: 1580px;
+  width: 100%;
+  margin: 0 auto
+}
+@media only screen and (max-width: 1600px) {
+  /* line 19, src/layout/components/scss/ui.scss */
+.container {
+    max-width: 1200px
+  }
+}
+@media only screen and (max-width: 1200px) {
+  /* line 19, src/layout/components/scss/ui.scss */
+.container {
+    padding: 0 15px
+  }
+}
+/* line 31, src/layout/components/scss/ui.scss */
+.swiper-container {
+  margin: 0
+}
+/* line 37, src/layout/components/scss/ui.scss */
+.tabs-tab {
+  display: none
+}
+/* line 40, src/layout/components/scss/ui.scss */
+.tabs-tab.active {
+  display: block
+}

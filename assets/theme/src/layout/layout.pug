@@ -1,0 +1,26 @@
+include components/pug/vars.pug
+include components/pug/mixin.pug
+include components/pug/project-mixin.pug
+include sections.pug
+
+doctype
+html
+	block head
+		head
+			include components/pug/meta.pug
+			include components/pug/links.pug
+
+			block head-info
+	body
+		block content
+			.page
+				block content-header
+					include blocks/header/header.pug
+
+				main.page-container
+					block content-main
+
+				block content-footer
+
+		block foot
+			include components/pug/scripts.pug
