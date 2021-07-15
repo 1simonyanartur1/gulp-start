@@ -42,7 +42,7 @@ const path = {
 		result: './app/'
 	},
 	styles: {
-		whatch: './src/layout/**/*.{scss,sass}',
+		whatch: './src/layout/**/*.{scss,sass}', 
 		compile: './src/layout/common/*.{scss,sass}',
 		result: './app/css/',
 		libs: [
