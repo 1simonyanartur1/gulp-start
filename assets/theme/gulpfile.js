@@ -48,8 +48,7 @@ const path = {
 		libs: [
 			'./src/files/libs/swiper/swiper-bundle.min.css', // slider
 			'./src/files/libs/tingle-master/tingle.min.css', // modal windows
-			'./src/files/libs/spotlight/spotlight.min.css', // gallery like fancybox
-			'./src/files/libs/beerslider/BeerSlider.css' // before-after slider
+			'./src/files/libs/scrollbars/OverlayScrollbars.min.css', // suctom scrollbar
 		]
 	},
 	scripts: {
@@ -60,16 +59,20 @@ const path = {
 			'./src/files/libs/Inputmask/inputmask.min.js', // telephone mask
 			'./src/files/libs/swiper/swiper-bundle.min.js', // slider
 			'./src/files/libs/tingle-master/tingle.min.js', // modal windows
-			'./src/files/libs/spotlight/spotlight.min.js', // gallery like fancybox
-			'./src/files/libs/beerslider/BeerSlider.js' // before-after slider
+			'./src/files/libs/scrollbars/OverlayScrollbars.min.js', // suctom scrollbar
+			'./src/files/libs/anime.js', // suctom scrollbar
 		]
 	},
 	images: {
-		source: ['./src/layout/components/sprite/svg/*.svg', './src/layout/**/*.{jpg,jpeg,png,gif}', '!./src/layout/common/img/icons/**/*.{jpg,jpeg,png,gif}', './src/layout/common/img/*.{jpg,jpeg,png,gif,svg}'],
+		source: ['./src/layout/components/sprite/svg/*.svg', './src/layout/**/*.{jpg,jpeg,png,gif}', '!./src/layout/common/img/icons/**/*.{jpg,jpeg,png,gif}', './src/layout/common/img/*.{jpg,jpeg,png,gif,svg}', './src/layout/blocks/**/img/*.{jpg,jpeg,png,gif,svg}'],
 		svgSource: './src/layout/common/img/icons/svg/*.svg',
 		pngSource: './src/layout/common/img/icons/png/*.png',
 		pngSource2x: './src/layout/common/img/icons/png/*-2x.png',
 		result: './default/',
+	},
+	video: {
+		source: './src/layout/blocks/**/*.{mp4,ogv,webm}',
+		result: './default/'
 	},
 	fonts: {
 		source: './src/files/fonts/**/*',
@@ -120,23 +123,23 @@ var pngSpriteOptions = {
 var imageminOptions = [
 	imagemin.svgo({
 		plugins: [{
-				optimizationLevel: 3
-			},
-			{
-				progessive: true
-			},
-			{
-				interlaced: true
-			},
-			{
-				removeViewBox: false
-			},
-			{
-				removeUselessStrokeAndFill: false
-			},
-			{
-				cleanupIDs: false
-			}
+			optimizationLevel: 3
+		},
+		{
+			progessive: true
+		},
+		{
+			interlaced: true
+		},
+		{
+			removeViewBox: false
+		},
+		{
+			removeUselessStrokeAndFill: false
+		},
+		{
+			cleanupIDs: false
+		}
 		]
 	}),
 	imagemin.gifsicle({
@@ -262,7 +265,7 @@ exports.jslibs = jsLibs;
 // Transfer images to default directory
 const transferImg = () => {
 	return src(path.images.source) // get images
-		.pipe(cache(imagemin(imageminOptions))) // generate images cache and minify them
+		// .pipe(cache(imagemin(imageminOptions))) // generate images cache and minify them
 		.pipe(rename(function (path) { // change path
 			var pathDir = path.dirname.replace('img', '').replace('blocks', '');
 			path.dirname = "/img/" + pathDir;
@@ -271,18 +274,26 @@ const transferImg = () => {
 }
 exports.transferimg = transferImg;
 
+// Transfer video to default directory
+const transferVideo = () => {
+	return src(path.video.source)
+		.pipe(rename(function (path) {
+			var pathDir = path.dirname.replace('video', '').replace('blocks', '');
+			path.dirname = "/video/" + pathDir;
+		}))
+		.pipe(dest(path.video.result))
+}
+exports.transfervideo = transferVideo;
+
 // Generate webp to default directory
 const generateWebp = () => {
 	return src(path.images.source) // get images
 		.pipe(webp()) // generate webp format
-		.pipe(cache(imagemin(imageminOptions))) // generate images cache and minify them
+		// .pipe(cache(imagemin(imageminOptions))) // generate images cache and minify them
 		.pipe(rename(function (path) { // change path
 			var pathDir = path.dirname.replace('img', '').replace('blocks', '');
 			path.dirname = "/img/" + pathDir + "/webp/";
 		}))
-		// .pipe(rename(function (path) { // change path
-		// 	path.dirname = "img/webp/";
-		// }))
 		.pipe(dest(path.images.result)) // paste images
 }
 exports.generatewebp = generateWebp;
@@ -291,7 +302,7 @@ exports.generatewebp = generateWebp;
 const generatePngSprite = () => {
 	var spriteData =
 		src(path.images.pngSource)
-		.pipe(spritesmith(pngSpriteOptions));
+			.pipe(spritesmith(pngSpriteOptions));
 
 	var imgStream = spriteData.img
 		.pipe(buffer())
@@ -376,6 +387,7 @@ const watchFiles = () => {
 	watch(path.styles.libs, cssLibs);
 	watch(path.images.source, transferImg);
 	watch(path.images.source, generateWebp);
+	watch(path.video.source, transferVideo);
 	watch(path.images.pngSource, generatePngSprite);
 	watch(path.images.svgSource, generateSvgSprite);
 	watch(path.favicon.source, transferFavicon);
@@ -390,7 +402,7 @@ exports.watchFiles = watchFiles;
 exports.default = series(
 	clear,
 	clearCache,
-	parallel(markupCompiller, styleCompiller, jsCompiller, cssLibs, jsLibs, transferImg, generateWebp, transferFavicon, transferFiles, generateSvgSprite, generatePngSprite, transferFonts),
+	parallel(markupCompiller, styleCompiller, jsCompiller, cssLibs, jsLibs, transferImg, generateWebp, transferVideo, transferFavicon, transferFiles, generateSvgSprite, generatePngSprite, transferFonts),
 	watchFiles
 );
 
@@ -451,5 +463,5 @@ exports.prodscripts = prodScripts;
 // Generate production directory
 exports.build = series(
 	clear,
-	parallel(markupCompiller, prodStyles, prodScripts, cssLibs, jsLibs, transferImg, generateWebp, transferFavicon, transferFiles, generateSvgSprite, generatePngSprite, transferFonts),
+	parallel(markupCompiller, prodStyles, prodScripts, cssLibs, jsLibs, transferImg, generateWebp, transferVideo, transferFavicon, transferFiles, generateSvgSprite, generatePngSprite, transferFonts),
 );
