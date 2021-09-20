@@ -4,22 +4,22 @@ include sections.pug
 
 doctype
 html
-	block head
-		head
+	head
+		block head
 			include components/pug/meta.pug
 			include components/pug/links.pug
 
-			block head-info
+			block head-inner
 	body
-		block content
-			.page
-				block content-header
-					include blocks/header/header.pug
+		block body
+			block header
+				//- include blocks/header/header.pug
 
-				main.page-container
-					block content-main
+			main.main#main
+				block main
 
-				block content-footer
+			block footer
+				//- include blocks/footer/footer.pug
 
 		block foot
 			include components/pug/scripts.pug

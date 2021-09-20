@@ -379,7 +379,7 @@ exports.transferfiles = transferFiles;
 const watchFiles = () => {
 	browserSync.init({
 		server: {
-			baseDir: "../../"
+			baseDir: "../../assets/theme/default/"
 		}
 	});
 	watch(path.markup.whatch, markupCompiller);
